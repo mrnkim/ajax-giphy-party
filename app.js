@@ -11,10 +11,20 @@ async function getGiphyResponse(evt) {
   const q = $("#searchInput").val();
   const api_key = "MhAodEJIJxQMxW9XqxKjyXfNYdLoOIym";
 
-  const response = await axios.get(
-    " http://api.giphy.com/v1/gifs/search",
-    { params: { q, api_key } });
+  const response = await axios.get(" http://api.giphy.com/v1/gifs/search", {
+    params: { q, api_key },
+  });
 
-    // After receiving the response, console.log the response data to make sure you’re getting back what you expect.
-    console.log("response.data=", response.data);
+  // After receiving the response, console.log the response data to make sure you’re getting back what you expect.
+  console.log("response.data=", response.data);
+
+  showGif(response.data);
+}
+
+//grab a GIF from the response data and append the GIF to the page
+
+function showGif(responseData, q) {
+  for (let object of responseData) {
+    let gifUrl = object.url;
+  }
 }
