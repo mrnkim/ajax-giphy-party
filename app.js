@@ -5,7 +5,6 @@ console.log("Let's get this party started!");
 const API_KEY = "MhAodEJIJxQMxW9XqxKjyXfNYdLoOIym";
 const BASE_API_URL = "http://api.giphy.com/v1";
 
-
 // When the user submits the form
 // use axios to make a request to GIPHY for information based on that term.
 $("#searchForm").on("submit", handleSubmit);
@@ -15,6 +14,7 @@ async function handleSubmit(evt) {
   evt.preventDefault();
 
   const query = $("#searchInput").val();
+  $("#searchInput").val(""); //Clear searchInput
   const response = await getResponse(query);
 
   showGif(response.data, query);
@@ -30,7 +30,7 @@ async function getResponse(q) {
 //grab a GIF from the response data and append the GIF to the page
 function showGif(response, query) {
   // NOTE: Can use a Set of indices as alternative to prevent duplicate images
-  const gifIndex = $(`.${query}`).length;
+  const gifIndex = $(`.${query}`).length; //Counts all the GIFs already appended
   const gifUrl = response.data[gifIndex].images.original.url;
 
   $(".canvas").append(`<img class=${query} src=${gifUrl}/>`);
